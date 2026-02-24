@@ -27,3 +27,8 @@ wheels/
 # Project specific
 *.docx
 !test_*.docx
+
+# Scripts (Local use only)
+一键上传GitHub.bat
+start_pdf_monitor.bat
+启动PDF监控.bat
