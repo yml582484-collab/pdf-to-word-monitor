@@ -226,26 +226,26 @@ def main():
     
     # 打印欢迎信息
     print("=" * 60)
-    print("PDF转Word自动监控工具 (Professional Version)")
+    print("PDF to Word Auto Monitor (Professional Version)")
     print("=" * 60)
-    print(f"监控目录: {Path(args.directory).absolute()}")
+    print(f"Monitor Directory: {Path(args.directory).absolute()}")
     if args.output:
-        print(f"输出目录: {Path(args.output).absolute()}")
-    print(f"并发线程: {args.workers}")
-    print(f"清理原件: {args.delete}")
-    print("按 Ctrl+C 停止监控")
+        print(f"Output Directory: {Path(args.output).absolute()}")
+    print(f"Concurrent Threads: {args.workers}")
+    print(f"Clean Original: {args.delete}")
+    print("Press Ctrl+C to stop monitoring")
     print("=" * 60)
     
     # 检查目录是否存在
     watch_dir = Path(args.directory)
     if not watch_dir.exists():
-        print(f"错误: 目录不存在 - {watch_dir.absolute()}")
+        print(f"Error: Directory not found - {watch_dir.absolute()}")
         sys.exit(1)
     
     # 如果指定了单次模式，处理现有文件后退出
     if args.single:
         convert_existing_pdfs(args.directory, args.output, args.delete, args.workers)
-        print("单次处理完成，程序退出")
+        print("Single run completed. Exiting.")
         sys.exit(0)
     
     # 处理现有PDF文件（在开始监控之前）
@@ -259,10 +259,10 @@ def main():
     try:
         # 启动监控
         observer.start()
-        logger.info(f"开始监控目录: {watch_dir.absolute()}")
-        print(f"监控已启动，正在监控 {watch_dir.absolute()}")
-        print("请将PDF文件放入上述目录，系统将自动转换为Word文档")
-        print("日志文件: pdf_monitor.log")
+        logger.info(f"Monitor started: {watch_dir.absolute()}")
+        print(f"Monitoring started. Watching {watch_dir.absolute()}")
+        print("Please drag and drop PDF files into the folder.")
+        print("Log file: pdf_monitor.log")
         
         # 持续运行（除非在非后台模式下）
         if args.daemon:
@@ -275,16 +275,16 @@ def main():
                 while True:
                     time.sleep(1)
             except KeyboardInterrupt:
-                print("\n正在停止监控...")
+                print("\nStopping monitor...")
                 
     except Exception as e:
-        logger.error(f"监控器运行时出错: {e}")
-        print(f"错误: {e}")
+        logger.error(f"Monitor error: {e}")
+        print(f"Error: {e}")
     finally:
         observer.stop()
         observer.join()
-        logger.info("监控器已停止")
-        print("监控已停止")
+        logger.info("Monitor stopped")
+        print("Monitor stopped")
 
 
 if __name__ == "__main__":

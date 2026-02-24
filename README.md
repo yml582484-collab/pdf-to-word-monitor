@@ -40,19 +40,17 @@ A high-performance Python-based utility that monitors a directory for new PDF fi
 
 ## 📖 Usage Guide
 
-### Basic Usage (Monitor current directory)
+### 🚀 Quick Start (Recommended)
+Double-click **`Start_Monitor.bat`** to start the tool.
+Drag and drop your PDF files into the folder, and they will be converted automatically!
+
+### Manual Usage (CLI)
 ```bash
+# Monitor current directory
 python pdf_monitor.py
-```
 
-### Monitor Specific Directory
-```bash
-python pdf_monitor.py -d "C:/Users/Desktop/MyPDFs" -o "C:/Users/Desktop/MyDocs"
-```
-
-### Batch Process Existing Files Only
-```bash
-python pdf_monitor.py --single -d "./input"
+# Monitor specific directory
+python pdf_monitor.py -d "C:/Users/Desktop/MyPDFs"
 ```
 
 ### Advanced Options
