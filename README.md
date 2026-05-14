@@ -82,3 +82,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 *Developed for efficiency and automation.*
+
+Made with ❤️ by yml582484-collab
