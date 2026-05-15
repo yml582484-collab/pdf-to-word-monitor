@@ -1,86 +1,78 @@
-# PDF-to-Word Auto Monitor (Professional)
+# PDF 转 Word 自动监控工具 (专业版)
+Python 3.6+
 
-[![Python 3.6+](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Watchdog](https://img.shields.io/badge/library-watchdog-orange)](https://pypi.org/project/watchdog/)
-[![pdf2docx](https://img.shields.io/badge/library-pdf2docx-green)](https://pypi.org/project/pdf2docx/)
+License: MIT
 
-A high-performance Python-based utility that monitors a directory for new PDF files and automatically converts them into editable Word documents (`.docx`) using multi-threaded processing.
+Watchdog
 
-## 🚀 Key Features
-
--   **Real-time Monitoring**: Leverages `watchdog` to detect new files instantly via OS-level events.
--   **Multi-threaded Processing**: Uses `ThreadPoolExecutor` to handle multiple conversions concurrently, significantly improving throughput for batch jobs.
--   **Intelligent File Handling**:
-    -   Automatic delay to ensure files are fully written before processing.
-    -   Duplicate filename protection with automatic timestamping.
-    -   Optional original file cleanup after successful conversion.
--   **Robust Logging**: Comprehensive logging system for auditing and troubleshooting.
--   **Professional CLI**: Rich command-line interface with support for daemon mode, single-run mode, and configurable concurrency.
-
-## 🛠️ Tech Stack
-
--   **Python 3**: Core logic.
--   **Watchdog**: Event-driven file system monitoring.
--   **pdf2docx**: High-fidelity PDF to DOCX conversion engine.
--   **Concurrent.futures**: Multi-threading for performance optimization.
-
-## 📋 Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/pdf-to-word-monitor.git
-    cd pdf-to-word-monitor
-    ```
-
-2.  **Install dependencies**:
-    ```bash
+pdf2docx
+这是一个基于 Python 的高性能实用工具，用于监控指定目录中的新 PDF 文件，并利用多线程处理技术自动将其转换为可编辑的 Word 文档 (.docx)。
+## 🚀 核心特性
+ * **实时监控**：利用 watchdog 借助操作系统级事件即时检测新文件。
+ * **多线程处理**：使用 ThreadPoolExecutor 并发执行多个转换任务，显著提升批处理任务的吞吐量。
+ * **智能文件处理**：
+   * 自动延迟读取，确保文件在处理前已完全写入硬盘。
+   * 重复文件名保护机制，自动为重名文件添加时间戳。
+   * 支持转换成功后自动清理（删除）原始文件的选项。
+ * **可靠的日志记录**：拥有全面的日志记录系统，方便进行任务审计和故障排除。
+ * **专业的命令行接口 (CLI)**：功能丰富的命令行支持，包含守护进程模式、单次运行模式以及可自定义的并发线程数。
+## 🛠️ 技术栈
+ * **Python 3**：核心业务逻辑。
+ * **Watchdog**：事件驱动的文件系统监控。
+ * **pdf2docx**：高保真的 PDF 到 DOCX 转换引擎。
+ * **Concurrent.futures**：多线程并发处理，优化性能。
+## 📋 安装说明
+ 1. **克隆仓库**：
+   ```bash
+   git clone https://github.com/yourusername/pdf-to-word-monitor.git
+   cd pdf-to-word-monitor
+   
+   ```
+ 2. **安装依赖包**：
+```bash
     pip install -r requirements.txt
     ```
 
-## 📖 Usage Guide
+## 📖 使用指南
 
-### 🚀 Quick Start (Recommended)
-Double-click **`Start_Monitor.bat`** to start the tool.
-Drag and drop your PDF files into the folder, and they will be converted automatically!
+### 🚀 快速启动 (推荐)
+双击 **`Start_Monitor.bat`** 即可启动该工具。
+只需将您的 PDF 文件拖放到监控文件夹中，它们就会被自动转换！
 
-### Manual Usage (CLI)
+### 手动运行 (命令行模式)
 ```bash
-# Monitor current directory
+# 监控当前目录
 python pdf_monitor.py
 
-# Monitor specific directory
+# 监控指定目录
 python pdf_monitor.py -d "C:/Users/Desktop/MyPDFs"
-```
 
-### Advanced Options
+```
+### 高级选项
 ```bash
-# Run with 8 threads and delete original PDFs after conversion
+# 使用 8 个线程运行，并在转换成功后删除原始 PDF 文件
 python pdf_monitor.py --workers 8 --delete --daemon
+
 ```
-
-| Argument | Short | Description | Default |
-| :--- | :--- | :--- | :--- |
-| `--directory` | `-d` | Path to monitor | `.` |
-| `--output` | `-o` | Output directory | Same as input |
-| `--workers` | | Max concurrent threads | `4` |
-| `--delete` | | Delete PDF after conversion | `False` |
-| `--daemon` | | Keep running in background | `False` |
-| `--single` | | Process existing files and exit | `False` |
-
-## 📝 Logging
-
-All operations are logged to `pdf_monitor.log`. You can monitor the progress in real-time:
+| 参数 | 简写 | 说明 | 默认值 |
+|---|---|---|---|
+| --directory | -d | 需要监控的路径 | . (当前目录) |
+| --output | -o | 输出目录 | 与输入目录相同 |
+| --workers |  | 最大并发线程数 | 4 |
+| --delete |  | 转换后删除原 PDF 文件 | False |
+| --daemon |  | 在后台持续运行 | False |
+| --single |  | 处理完现有文件后直接退出 | False |
+## 📝 日志记录
+所有的运行操作都会被记录到 pdf_monitor.log 文件中。您可以实时监控处理进度：
 ```bash
 tail -f pdf_monitor.log  # Linux/macOS
 Get-Content pdf_monitor.log -Wait # Windows PowerShell
+
+```
+## ⚖️ 开源协议
+本项目基于 MIT 协议分发。更多信息请参阅 LICENSE 文件。
+*专为提升效率与自动化而开发。*
+由 yml582484-collab 用 ❤️ 制作
 ```
 
-## ⚖️ License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-*Developed for efficiency and automation.*
-
-Made with ❤️ by yml582484-collab
+```
